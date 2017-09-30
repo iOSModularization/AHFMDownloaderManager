@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'AHFMDownloaderManager_Example' do
+  pod 'AHFMDownloaderManager', :path => '../'
+
+  target 'AHFMDownloaderManager_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

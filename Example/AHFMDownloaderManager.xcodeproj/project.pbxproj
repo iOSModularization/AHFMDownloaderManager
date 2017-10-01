@@ -337,11 +337,23 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-AHFMDownloaderManager_Example/Pods-AHFMDownloaderManager_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AHDataModel/AHDataModel.framework",
+				"${BUILT_PRODUCTS_DIR}/AHDownloadTool/AHDownloadTool.framework",
+				"${BUILT_PRODUCTS_DIR}/AHDownloader/AHDownloader.framework",
+				"${BUILT_PRODUCTS_DIR}/AHFMDataCenter/AHFMDataCenter.framework",
 				"${BUILT_PRODUCTS_DIR}/AHFMDownloaderManager/AHFMDownloaderManager.framework",
+				"${BUILT_PRODUCTS_DIR}/AHFMModuleManager/AHFMModuleManager.framework",
+				"${BUILT_PRODUCTS_DIR}/UIDeviceExtension/UIDeviceExtension.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AHDataModel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AHDownloadTool.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AHDownloader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AHFMDataCenter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AHFMDownloaderManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AHFMModuleManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIDeviceExtension.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

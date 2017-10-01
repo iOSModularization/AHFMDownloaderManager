@@ -1,0 +1,33 @@
+{
+  "name": "AHFMDownloaderManager",
+  "version": "0.1.0",
+  "summary": "A short description of AHFMDownloaderManager.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/iOSModularization/AHFMDownloaderManager",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "ivsall2012": "ivsall2012@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/iOSModularization/AHFMDownloaderManager.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "AHFMDownloaderManager/Classes/**/*",
+  "dependencies": {
+    "AHDownloader": [
+
+    ],
+    "AHFMModuleManager": [
+
+    ],
+    "AHFMDataCenter": [
+
+    ]
+  }
+}

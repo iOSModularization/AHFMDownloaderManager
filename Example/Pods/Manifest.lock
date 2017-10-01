@@ -1,0 +1,34 @@
+PODS:
+  - AHDataModel (0.3.0)
+  - AHDownloader (0.1.3):
+    - AHDownloadTool
+  - AHDownloadTool (0.1.7)
+  - AHFMDataCenter (0.1.2):
+    - AHDataModel
+    - UIDeviceExtension
+  - AHFMDownloaderManager (0.1.0):
+    - AHDownloader
+    - AHFMDataCenter
+    - AHFMModuleManager
+  - AHFMModuleManager (0.2.0)
+  - UIDeviceExtension (0.1.0)
+
+DEPENDENCIES:
+  - AHFMDownloaderManager (from `../`)
+
+EXTERNAL SOURCES:
+  AHFMDownloaderManager:
+    :path: ../
+
+SPEC CHECKSUMS:
+  AHDataModel: b266f3a0a302d5aa4428f11dd789a4924ff76f1b
+  AHDownloader: 4b44879df4766fa934fb5a86cb91e074a783913c
+  AHDownloadTool: 5dd4e03d314527691d16691e526eb479db2f7f80
+  AHFMDataCenter: 1ed58c19944bb34ba1ad83c20f2e1c01d4f7291f
+  AHFMDownloaderManager: 6c1bc90090db8019e9575b20ac6b0cd3fa5f4a70
+  AHFMModuleManager: 301c8a5945a301528d5cba55e4809428ef896141
+  UIDeviceExtension: 53d1d2177714a3e434e755b6c0fb66678595fce4
+
+PODFILE CHECKSUM: 8cfa28f7e8fb2df1e8794c508e23c119cf1258a9
+
+COCOAPODS: 1.3.0.beta.2

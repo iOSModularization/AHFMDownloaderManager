@@ -35,14 +35,14 @@ public class Manager: AHDownloaderDelegate {
         }
         
         let ep = eps.first!
+        self.urlToID[url] = ep.id
         AHFMEpisodeInfo.write {
             if let _ = AHFMEpisodeInfo.query(byPrimaryKey: ep.id) {
-                self.urlToID[url] = ep.id
+
             }else{
                 let info = AHFMEpisodeInfo(with: ["id": ep.id])
                 do {
                     try  AHFMEpisodeInfo.insert(model: info)
-                    self.urlToID[url] = ep.id
                 } catch let error {
                     print("AHFMDownloaderManager downloaderDidStartDownload error:\(error)")
                 }
@@ -84,7 +84,7 @@ public class Manager: AHDownloaderDelegate {
         
         AHFMEpisodeInfo.write {
             do {
-                try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["localFilePath": localFilePath])
+                try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["localFilePath": localFilePath, "isDownloaded": true])
             } catch let error {
                 print("AHFMDownloaderManager downloaderDidFinishDownload fileSize error:\(error)")
             }
@@ -126,9 +126,7 @@ public class Manager: AHDownloaderDelegate {
         AHFMEpisodeInfo.write {
             for id in self.urlToID.values {
                 do {
-                    try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["localFilePath": ""])
-                    try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["unfinishedFilePath": ""])
-                    try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["downloadedProgress": 0.0])
+                    try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["localFilePath": "", "unfinishedFilePath": "", "downloadedProgress": 0.0, "isDownloaded": false])
                 } catch let error {
                     print("AHFMDownloaderManager downloaderCancelAll error:\(error)")
                 }
@@ -143,9 +141,7 @@ public class Manager: AHDownloaderDelegate {
         
         AHFMEpisodeInfo.write {
             do {
-                try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["localFilePath": ""])
-                try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["unfinishedFilePath": ""])
-                try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["downloadedProgress": 0.0])
+                try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["localFilePath": "", "unfinishedFilePath": "", "downloadedProgress": 0.0, "isDownloaded": false])
             } catch let error {
                 print("AHFMDownloaderManager downloaderDidCancel error:\(error)")
             }
@@ -158,9 +154,7 @@ public class Manager: AHDownloaderDelegate {
             for url in urls {
                 if let id = self.urlToID[url] {
                     do {
-                        try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["localFilePath": ""])
-                        try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["unfinishedFilePath": ""])
-                        try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["downloadedProgress": 0.0])
+                        try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["localFilePath": "", "unfinishedFilePath": "", "downloadedProgress": 0.0, "isDownloaded": false])
                     } catch let error {
                         print("AHFMDownloaderManager downloaderDeletedUnfinishedTaskFiles error:\(error)")
                     }

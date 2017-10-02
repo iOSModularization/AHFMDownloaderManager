@@ -161,6 +161,8 @@ public class Manager: AHDownloaderDelegate {
                 }
             }
         }
+        self.idToProgress.removeValue(forKey: id)
+        self.urlToID.removeValue(forKey: url)
     }
     
     public func downloaderDidCancel(url:String){
@@ -189,6 +191,9 @@ public class Manager: AHDownloaderDelegate {
                 print("AHFMDownloaderManager downloaderDidCancel error:\(error)")
             }
         }
+        self.idToProgress.removeValue(forKey: id)
+        self.urlToID.removeValue(forKey: url)
+
         
     }
     
@@ -218,6 +223,9 @@ public class Manager: AHDownloaderDelegate {
                 } catch let error {
                     print("AHFMDownloaderManager downloaderDeletedUnfinishedTaskFiles error:\(error)")
                 }
+
+                self.idToProgress.removeValue(forKey: id)
+                self.urlToID.removeValue(forKey: url)
 
             }
         }

@@ -24,7 +24,7 @@ public class Manager: AHDownloaderDelegate {
     }
     
     @objc func appWillResignActive(_ notification: Notification) {
-        downloaderCancelAll()
+        downloaderDidPausedAll()
     }
     
     
@@ -152,6 +152,8 @@ public class Manager: AHDownloaderDelegate {
                         print("downloaderDidFinishDownload show update failed")
                     }
                     
+                    self.idToProgress.removeValue(forKey: id)
+                    self.urlToID.removeValue(forKey: ep.audioURL!)
                 }
                 
                 do {
@@ -159,10 +161,12 @@ public class Manager: AHDownloaderDelegate {
                 } catch let error {
                     print("AHFMDownloaderManager downloaderCancelAll error:\(error)")
                 }
+                
+                
             }
+            
         }
-        self.idToProgress.removeValue(forKey: id)
-        self.urlToID.removeValue(forKey: url)
+        
     }
     
     public func downloaderDidCancel(url:String){

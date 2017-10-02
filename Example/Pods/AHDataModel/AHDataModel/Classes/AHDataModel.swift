@@ -190,11 +190,18 @@ extension AHDataModel {
         try db.insert(table: Self.tableName(), bindings: attributes)
     }
     
-    /// If return false, there must be at least 1 error. not a transaction yet!
-    public static func insert(models: [Self]) throws {
+    /// Return those unsuccessfully inserted ones.
+    @discardableResult
+    public static func insert(models: [Self]) -> [Self] {
+        var unsuccessful = [Self]()
         for model in models {
-            try insert(model: model)
+            do {
+                try insert(model: model)
+            } catch {
+                unsuccessful.append(model)
+            }
         }
+        return unsuccessful
     }
 }
 
@@ -216,11 +223,18 @@ extension AHDataModel {
         }
     }
     
-    /// not a transaction yet!
-    public static func update(models: [Self]) throws {
+    /// Return those unsuccessfully updated ones.
+    @discardableResult
+    public static func update(models: [Self]) -> [Self] {
+        var unsuccessful = [Self]()
         for model in models {
-            try update(model: model)
+            do {
+                try update(model: model)
+            } catch  {
+                unsuccessful.append(model)
+            }
         }
+        return unsuccessful
     }
     
     /// Update specific properties of this model into the database
@@ -547,6 +561,10 @@ internal struct AHDBHelper {
             type = .integer
         }else if value is String {
             type = .text
+        }else if value is Bool {
+            type = .integer
+        }else {
+            fatalError("Unsupported value:\(String(describing: value)) with type:\(type(of: value))")
         }
         return type
     }

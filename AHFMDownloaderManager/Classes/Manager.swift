@@ -142,19 +142,6 @@ public class Manager: AHDownloaderDelegate {
     public func downloaderCancelAll(){
         AHFMEpisodeInfo.write {
             for id in self.urlToID.values {
-                if let ep = AHFMEpisode.query(byPrimaryKey: id), let show = AHFMShow.query(byPrimaryKey: ep.showId), let epInfo = AHFMEpisodeInfo.query(byPrimaryKey: id) {
-                    
-                    do{
-                        let numOfDownloaded = show.numberOfEpDownloaded - 1
-                        let totalFilesSize = show.totalFilesSize - (epInfo.fileSize ?? 0)
-                        try AHFMShow.update(byPrimaryKey: show.id, forProperties: ["numberOfEpDownloaded": numOfDownloaded, "totalFilesSize": totalFilesSize, "hasNewDownload": false])
-                    }catch {
-                        print("downloaderDidFinishDownload show update failed")
-                    }
-                    
-                    self.idToProgress.removeValue(forKey: id)
-                    self.urlToID.removeValue(forKey: ep.audioURL!)
-                }
                 
                 do {
                     try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["localFilePath": "", "unfinishedFilePath": "", "downloadedProgress": 0.0, "isDownloaded": false])
@@ -175,19 +162,6 @@ public class Manager: AHDownloaderDelegate {
         }
         
         AHFMEpisodeInfo.write {
-            if let ep = AHFMEpisode.query(byPrimaryKey: id), let show = AHFMShow.query(byPrimaryKey: ep.showId), let epInfo = AHFMEpisodeInfo.query(byPrimaryKey: id) {
-                
-                do{
-                    let numOfDownloaded = show.numberOfEpDownloaded - 1
-                    let totalFilesSize = show.totalFilesSize - (epInfo.fileSize ?? 0)
-                    try AHFMShow.update(byPrimaryKey: show.id, forProperties: ["numberOfEpDownloaded": numOfDownloaded, "totalFilesSize": totalFilesSize, "hasNewDownload": false])
-                }catch {
-                    print("downloaderDidFinishDownload show update failed")
-                }
-                
-            }else{
-                print("AHFMDownloaderManager downloaderDidFinishDownload: no corresponding show or ep for this url:\(url)")
-            }
             
             do {
                 try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["localFilePath": "", "unfinishedFilePath": "", "downloadedProgress": 0.0, "isDownloaded": false])
@@ -206,19 +180,6 @@ public class Manager: AHDownloaderDelegate {
             for url in urls {
                 guard let id = self.urlToID[url] else {
                     continue
-                }
-                if let ep = AHFMEpisode.query(byPrimaryKey: id), let show = AHFMShow.query(byPrimaryKey: ep.showId), let epInfo = AHFMEpisodeInfo.query(byPrimaryKey: id) {
-                    
-                    do{
-                        let numOfDownloaded = show.numberOfEpDownloaded - 1
-                        let totalFilesSize = show.totalFilesSize - (epInfo.fileSize ?? 0)
-                        try AHFMShow.update(byPrimaryKey: show.id, forProperties: ["numberOfEpDownloaded": numOfDownloaded, "totalFilesSize": totalFilesSize, "hasNewDownload": false])
-                    }catch {
-                        print("downloaderDidFinishDownload show update failed")
-                    }
-                    
-                }else{
-                    print("AHFMDownloaderManager downloaderDidFinishDownload: no corresponding show or ep for this url:\(url)")
                 }
                 
                 

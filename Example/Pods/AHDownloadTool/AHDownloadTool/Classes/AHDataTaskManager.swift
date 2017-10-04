@@ -28,10 +28,16 @@ public class AHDataTaskManager: NSObject {
     fileprivate static var dispatchQueue: DispatchQueue = {
         return DispatchQueue(label: AHDataTaskManagerDispatchQueueName)
     }()
-    fileprivate static var dataTaskDict = [String: AHDataTask]()
+    public fileprivate(set) static var dataTaskDict = [String: AHDataTask]()
 }
 
 public extension AHDataTaskManager {
+    public static func getCurrentTaskURLs() -> [String] {
+        return dataTaskDict.keys.map({ (str) -> String in
+            return str
+        })
+    }
+    
     public static func getState(_ urlStr: String) -> AHDataTaskState {
         if let task = dataTaskDict[urlStr] {
             return task.state
@@ -43,6 +49,14 @@ public extension AHDataTaskManager {
     public static func getTaskTempFilePath(_ urlStr: String) -> String? {
         if let task = dataTaskDict[urlStr] {
             return task.fileTempPath
+        }else{
+            return nil
+        }
+    }
+    
+    public static func getTaskCacheFilePath(_ urlStr: String) -> String? {
+        if let task = dataTaskDict[urlStr] {
+            return task.fileCachePath
         }else{
             return nil
         }
@@ -68,12 +82,12 @@ public extension AHDataTaskManager {
                 
                 // Default AHDataTask's callback queue is main
                 dataTask?.donwload(url: url, fileSizeCallback: fileSizeCallback, progressCallback: progressCallback, successCallback: { (path) in
-                    
+
                     DispatchQueue.main.async {
                         successCallback?(path)
                         self.dataTaskDict.removeValue(forKey: url)
                     }
-                
+                    
                 }, failureCallback: { (error) in
                     DispatchQueue.main.async {
                         failureCallback?(error)

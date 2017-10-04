@@ -101,7 +101,7 @@ public class Manager: AHDownloaderDelegate {
             
             // save episodeInfo
             do {
-                try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["localFilePath": localFilePath, "isDownloaded": true])
+                try AHFMEpisodeInfo.update(byPrimaryKey: id, forProperties: ["localFilePath": localFilePath, "isDownloaded": true,"downloadedProgress": 100.0])
             } catch let error {
                 print("AHFMDownloaderManager downloaderDidFinishDownload fileSize error:\(error)")
             }

@@ -24,6 +24,7 @@ public class Manager: AHDownloaderDelegate {
     }
     
     @objc func appWillResignActive(_ notification: Notification) {
+        AHDownloader.pauseAll()
         downloaderDidPausedAll()
     }
     
@@ -53,6 +54,22 @@ public class Manager: AHDownloaderDelegate {
 
     public func downloaderDidUpdate(url: String, progress: Double) {
         guard let id = urlToID[url] else {return}
+//        var oldProgress = self.idToProgress[id]
+//        
+//        if oldProgress == nil {
+//            self.idToProgress[id] = progress
+//            oldProgress = progress
+//        }
+//        
+//        let newProgress = progress
+//        
+//        let firstDigitA = Int(oldProgress! * 10)
+//        let firstDigitB = Int(newProgress * 10)
+//        
+//
+//        if firstDigitA != firstDigitB {
+//            // save to DB
+//        }
         
         self.idToProgress[id] = progress
         

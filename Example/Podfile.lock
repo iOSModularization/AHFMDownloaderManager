@@ -1,12 +1,12 @@
 PODS:
-  - AHDataModel (0.3.3)
-  - AHDownloader (0.1.6):
+  - AHDataModel (0.4.1)
+  - AHDownloader (0.1.7):
     - AHDownloadTool
-  - AHDownloadTool (0.1.10)
-  - AHFMDataCenter (0.1.3):
+  - AHDownloadTool (0.1.12)
+  - AHFMDataCenter (0.1.6):
     - AHDataModel
     - UIDeviceExtension
-  - AHFMDownloaderManager (0.1.6):
+  - AHFMDownloaderManager (0.1.7):
     - AHDownloader
     - AHFMDataCenter
     - AHFMModuleManager
@@ -21,11 +21,11 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  AHDataModel: 5f7ddd45e58bfcac15624952d629e121faef574f
-  AHDownloader: a60810a3dcc345858359b4e7413df9d1dac7a224
-  AHDownloadTool: d942add9da4ab4f87f82d3d63bb194a5631e9bb0
-  AHFMDataCenter: efc8e4f8b926c6cb1b853ed754fb4547ed1cdb90
-  AHFMDownloaderManager: cbe655ebf05a7e4f4820e58b89793707449f36c4
+  AHDataModel: b125e87955b1c57c6d07ae824d5c5f559cea433a
+  AHDownloader: 0797ca6a7fc971f4ba5856f20618ba014da78164
+  AHDownloadTool: 3631bba6300abb67c0ff486133a8ee456282c223
+  AHFMDataCenter: 2190baeb9bff7ebfbc5dd0811eb46e29b7439d24
+  AHFMDownloaderManager: c942bef49ed0a212b57d5f92bfa7bce46e97169a
   AHFMModuleManager: 301c8a5945a301528d5cba55e4809428ef896141
   UIDeviceExtension: 53d1d2177714a3e434e755b6c0fb66678595fce4
 

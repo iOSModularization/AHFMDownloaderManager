@@ -53,6 +53,7 @@ extension AHFMEpisode: AHDataModel {
         self.createdAt = dict["createdAt"] as? String
         self.showTitle = dict["showTitle"] as? String
         self.title = dict["title"] as? String
+        self.detail = dict["detail"] as? String
         self.audioURL = dict["audioURL"] as? String
         self.showFullCover = dict["showFullCover"] as? String
         self.showThumbCover = dict["showThumbCover"] as? String
@@ -73,6 +74,7 @@ extension AHFMEpisode: AHDataModel {
         dict["createdAt"] = self.createdAt
         dict["showTitle"] = self.showTitle
         dict["title"] = self.title
+        dict["detail"] = self.detail
         dict["audioURL"] = self.audioURL
         dict["showFullCover"] = self.showFullCover
         dict["showThumbCover"] = self.showThumbCover
